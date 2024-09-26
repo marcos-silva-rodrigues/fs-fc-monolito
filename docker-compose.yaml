@@ -1,0 +1,6 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./node_modules:/home/app/node_modules
+      - .:/home/app
