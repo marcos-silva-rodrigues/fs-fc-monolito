@@ -1,10 +1,12 @@
 import AddProductUseCase from "../usecase/add-product/add-product.usecase";
+import CheckStockUseCase from "../usecase/check-stock/check-stock.usecase";
 import { AddProductFacadeInputDto, CheckStoreFacadeInputDto, CheckStoreFacadeOutputDto, ProductAdmFacadeInterface } from "./product-adm.facade.interface";
 
 export default class ProductAdmFacade implements ProductAdmFacadeInterface {
     
     constructor(
-        private addUserCase: AddProductUseCase
+        private addUserCase: AddProductUseCase,
+        private checkStockUseCase: CheckStockUseCase
     ) { }
     
     async addProduct(input: AddProductFacadeInputDto): Promise<void> {
@@ -12,7 +14,7 @@ export default class ProductAdmFacade implements ProductAdmFacadeInterface {
     }
 
     checkStock(input: CheckStoreFacadeInputDto): Promise<CheckStoreFacadeOutputDto> {
-        throw new Error("Method not implemented.");
+        return this.checkStockUseCase.execute(input);
     }
     
 }
