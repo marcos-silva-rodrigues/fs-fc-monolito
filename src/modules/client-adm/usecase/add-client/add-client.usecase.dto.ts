@@ -6,7 +6,7 @@ export interface AddClientInputDto {
 }
 
 export interface AddClientOutputDto {
-    id?: string;
+    id: string;
     name: string;
     email: string;
     address: string;
