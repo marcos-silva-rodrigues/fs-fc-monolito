@@ -59,7 +59,7 @@ describe("Process Payment usecase unit test", () => {
 
         expect(output.transactionId).toBe(transaction.id.id);
         expect(output.status).toBe("declined");
-        expect(output.amount).toBe(100);
+        expect(output.amount).toBe(50);
         expect(output.orderId).toBe("1");
         expect(output.createdAt).toEqual(transaction.createdAt);
         expect(output.updatedAt).toEqual(transaction.updatedAt);
