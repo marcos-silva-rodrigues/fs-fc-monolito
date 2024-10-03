@@ -66,7 +66,7 @@ describe("Client Repository test", () => {
         expect(client.name).toBe(clientDb.name);
         expect(client.email).toBe(clientDb.email);
         expect(client.address).toBe(clientDb.address);
-        expect(client.updatedAt).toEqual(clientDb.createdAt);
-        expect(client.createdAt).toEqual(clientDb.updatedAt);
+        expect(client.updatedAt).toEqual(clientDb.updatedAt);
+        expect(client.createdAt).toEqual(clientDb.createdAt);
     })
 })
