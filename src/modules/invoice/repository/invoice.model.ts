@@ -6,7 +6,7 @@ import InvoiceItemModel from "./invoice-item.model";
 
 @Table({
     tableName: "invoices",
-    timestamps: false
+    timestamps: false,
 })
 export default class InvoiceModel extends Model {
 
