@@ -1,3 +1,4 @@
+import Address from "../../../@shared/domain/value-object/address";
 import AddClientUseCase from "./add-client.usecase";
 
 const MockRepository = () => {
@@ -15,7 +16,15 @@ describe("Add client usecase unit test", () => {
         const input = {
             name: "Client 1",
             email: "x@email.com",
-            address: "Address 1"
+            document: "1234-5678",
+            address: new Address(
+                "Rua 123",
+                "99",
+                "Casa Verde",
+                "Criciúma",
+                "SC",
+                "88888-888",
+              )
         }
 
         const output = await usecase.execute(input);
@@ -24,6 +33,6 @@ describe("Add client usecase unit test", () => {
         expect(output.id).toBeDefined();
         expect(output.name).toBe(input.name);
         expect(output.email).toBe(input.email);
-        expect(output.address).toBe(input.address);
+        expect(output.address).toEqual(input.address);
     })
 })

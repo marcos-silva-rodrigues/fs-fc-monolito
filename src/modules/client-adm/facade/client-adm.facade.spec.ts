@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import { ClientModel } from "../repository/client.model";
 import { ClientAdmFacadeFactory } from "../factory/client-adm.facade.factory";
+import Address from "../../@shared/domain/value-object/address";
 
 describe("ClientAdmFacade test", () => {
     let sequelize: Sequelize;
@@ -25,27 +26,36 @@ describe("ClientAdmFacade test", () => {
 
     it("should create a client", async () => {
         const input = {
+            id: "1",
             name: "Client 1",
-            address: "Address 1",
-            email: "x@email.com"
+            email: "x@email.com",
+            document: "1234-5678",
+            address: new Address(
+              "Rua 123",
+              "99",
+              "Casa Verde",
+              "Criciúma",
+              "SC",
+              "88888-888",
+            )
         };
 
         const clientFacade = ClientAdmFacadeFactory.create();
  
-        const client = await clientFacade.add(input);
+        await clientFacade.add(input);
 
-        const result = await ClientModel.findOne({
+        const client = await ClientModel.findOne({
             where: {
-                id: client.id
+                id: "1"
             }
         });
 
-        expect(result.id).toBe(client.id)
-        expect(result.updatedAt).toEqual(client.updatedAt);
-        expect(result.createdAt).toEqual(client.createdAt);
-        expect(result.name).toBe(client.name);
-        expect(result.email).toBe(client.email);
-        expect(result.address).toBe(client.address);
+        expect(client).toBeDefined()
+        expect(client.id).toBe(input.id)
+        expect(client.name).toBe(input.name)
+        expect(client.email).toBe(input.email)
+        expect(client.document).toBe(input.document)
+        expect(client.street).toBe(input.address.street)
       
     });
 
@@ -54,7 +64,13 @@ describe("ClientAdmFacade test", () => {
         const clientDb = await ClientModel.create({
             id: "1",
             name: "Client 1",
-            address: "Address 1",
+            document: "1234-5678",
+            street: "Rua 123",
+            number: "99",
+            complement: "Casa Verde",
+            city: "Criciúma",
+            state: "SC",
+            zipcode: "88888-888",
             email: "x@email.com",
             createdAt: new Date(),
             updatedAt: new Date()
@@ -71,7 +87,13 @@ describe("ClientAdmFacade test", () => {
         expect(output.id).toBe(clientDb.id);
         expect(output.name).toBe(clientDb.name);
         expect(output.email).toBe(clientDb.email);
-        expect(output.address).toBe(clientDb.address);
+        expect(output.document).toBe(clientDb.document)
+        expect(output.address.street).toBe(clientDb.street)
+        expect(output.address.number).toBe(clientDb.number)
+        expect(output.address.complement).toBe(clientDb.complement)
+        expect(output.address.city).toBe(clientDb.city)
+        expect(output.address.state).toBe(clientDb.state)
+        expect(output.address.zipCode).toBe(clientDb.zipcode)
         expect(output.updatedAt).toEqual(clientDb.createdAt);
         expect(output.createdAt).toEqual(clientDb.updatedAt);
     })

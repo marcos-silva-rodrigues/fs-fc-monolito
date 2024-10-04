@@ -1,21 +1,24 @@
-export interface FindClientFacadeOutput {
-    id: string;
-    name: string;
-    email: string;
-    address: string;
-    createdAt: Date;
-    updatedAt: Date;
+import Address from "../../@shared/domain/value-object/address"
+
+export interface AddClientFacadeInputDto {
+  id?: string
+  name: string
+  email: string
+  document: string
+  address: Address
 }
 
-export interface AddClientFacadeInput {
-    id?: string;
-    name: string;
-    email: string;
-    address: string;
+export interface FindClientFacadeOutputDto {
+  id: string
+  name: string
+  email: string
+  document: string
+  address: Address
+  createdAt: Date
+  updatedAt: Date
 }
-
 
 export default interface ClientAdmFacadeInterface {
-    find(productId: string): Promise<FindClientFacadeOutput>
-    add(product: AddClientFacadeInput): Promise<FindClientFacadeOutput>
+    find(productId: string): Promise<FindClientFacadeOutputDto>
+    add(product: AddClientFacadeInputDto): Promise<void>
 }
