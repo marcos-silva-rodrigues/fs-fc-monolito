@@ -18,7 +18,10 @@
     "typescript": "^5.6.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "server:dev": "nodemon src/infra/api/server.ts",
+    "server:prod": "node dist/infra/api/server.js"
   },
   "keywords": [],
   "author": "",
