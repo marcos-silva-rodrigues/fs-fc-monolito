@@ -28,4 +28,15 @@ export default class ProductRepository implements  ProductGateway {
         });
     }
 
+    async add(product: Product): Promise<Product> {
+        await ProductModel.create({
+            id: product.id.id,
+            name: product.name,
+            description: product.description,
+            salesPrice: product.salesPrice,
+        })
+        
+        return product;
+    }
+
 }
