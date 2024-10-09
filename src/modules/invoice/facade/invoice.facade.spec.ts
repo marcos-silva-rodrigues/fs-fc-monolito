@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize-typescript";
 import AddressModel from "../repository/address.model";
 import InvoiceModel from "../repository/invoice.model";
 import InvoiceItemModel from "../repository/invoice-item.model";
-import InvoiceFacadefactory from "../factory/invoice.facade.factory";
+import InvoiceFacadeFactory from "../factory/invoice.facade.factory";
 
 const generateInvoiceDto = {
     name: "invoice 90872",
@@ -80,7 +80,7 @@ describe("InvoiceFacade test", () => {
     })
 
     it("should create a invoice", async () => {
-        const facade = InvoiceFacadefactory.create();
+        const facade = InvoiceFacadeFactory.create();
         const invoice = await facade.generateInvoice(generateInvoiceDto);
 
         expect(invoice.id).toBeDefined();
@@ -100,7 +100,7 @@ describe("InvoiceFacade test", () => {
             include: [AddressModel, InvoiceItemModel]
         });
 
-        const facade = InvoiceFacadefactory.create();
+        const facade = InvoiceFacadeFactory.create();
         const invoice = await facade.findInvoice({ id: "1"});
 
         expect(invoice.id).toBe(invoiceModelResult.id);
