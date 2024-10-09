@@ -1,13 +1,14 @@
-import { app, sequelize } from "../express";
 import request from "supertest";
+import { app, setupDb, teardownDb } from "../express";
+
 
 describe("E2E test for client", () => {
     beforeEach(async () => {
-        await sequelize.sync({force: true});
+        await setupDb()
     })
 
-    afterAll(async () => {
-        await sequelize.close();
+    afterEach(async () => {
+        await teardownDb();
     })
 
     it("should create a client", async () => {
@@ -24,6 +25,7 @@ describe("E2E test for client", () => {
                 state: "São Paulo",
                 zipCode: "12345-098"
             });
+
 
         expect(response.status).toBe(201);
         expect(response.body.id).toBeDefined();

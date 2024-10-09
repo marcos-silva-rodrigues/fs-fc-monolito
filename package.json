@@ -20,6 +20,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "migrate:cli": "ts-node src/infra/database/cli/migration.ts",
     "server:dev": "nodemon src/infra/api/server.ts",
     "server:prod": "node dist/infra/api/server.js"
   },
@@ -28,6 +29,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/umzug": "^2.3.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "jstoxml": "^5.0.2",
@@ -36,6 +38,7 @@
     "sequelize": "^6.37.3",
     "sequelize-typescript": "^2.1.6",
     "sqlite3": "^5.1.7",
+    "umzug": "^3.8.2",
     "uuid": "^10.0.0",
     "yup": "^1.4.0"
   }

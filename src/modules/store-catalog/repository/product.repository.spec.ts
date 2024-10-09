@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "./product.model";
+import { ProductModel } from "./product.model";
 import ProductRepository from "./product.repository";
 
 describe("Product repository test", () => {
     let sequelize: Sequelize;
 
     beforeEach(async () => {
-        sequelize =  new Sequelize({
+        sequelize = new Sequelize({
             dialect: "sqlite",
             storage: ":memory:",
             logging: false,
@@ -28,14 +28,18 @@ describe("Product repository test", () => {
             id: "1",
             description: "Product 1 desc",
             name: "Product 1",
-            salesPrice: 100
+            salesPrice: 100,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         await ProductModel.create({
             id: "2",
             description: "Product 2 desc",
             name: "Product 2",
-            salesPrice: 200
+            salesPrice: 200,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         const productRepository = new ProductRepository();
@@ -47,7 +51,7 @@ describe("Product repository test", () => {
         expect(products[0].salesPrice).toBe(100);
 
         expect(products[1].id.id).toBe("2");
-        expect(products[1].name).toBe( "Product 2");
+        expect(products[1].name).toBe("Product 2");
         expect(products[1].description).toBe("Product 2 desc");
         expect(products[1].salesPrice).toBe(200);
 
@@ -58,7 +62,9 @@ describe("Product repository test", () => {
             id: "1",
             description: "Product 1 desc",
             name: "Product 1",
-            salesPrice: 100
+            salesPrice: 100,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         const productRepository = new ProductRepository();

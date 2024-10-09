@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "../repository/product.model";
+import { ProductModel } from "../repository/product.model";
 import StoreCatalogFacadeFactory from "../factory/store-catalog.facade.factory";
 
 describe("", () => {
     let sequelize: Sequelize;
 
     beforeEach(async () => {
-        sequelize =  new Sequelize({
+        sequelize = new Sequelize({
             dialect: "sqlite",
             storage: ":memory:",
             logging: false,
@@ -28,7 +28,9 @@ describe("", () => {
             id: "1",
             description: "Product 1 desc",
             name: "Product 1",
-            salesPrice: 100
+            salesPrice: 100,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         const storeCatalogFacade = StoreCatalogFacadeFactory.create();
@@ -48,14 +50,18 @@ describe("", () => {
             id: "1",
             description: "Product 1 desc",
             name: "Product 1",
-            salesPrice: 100
+            salesPrice: 100,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         await ProductModel.create({
             id: "2",
             description: "Product 2 desc",
             name: "Product 2",
-            salesPrice: 200
+            salesPrice: 200,
+            createdAt: new Date(),
+            updatedAt: new Date()
         });
 
         const storeCatalogFacade = StoreCatalogFacadeFactory.create();

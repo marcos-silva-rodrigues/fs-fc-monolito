@@ -1,13 +1,15 @@
-import { app, sequelize } from "../express";
+
+import { app, setupDb, teardownDb } from "../express";
 import request from "supertest";
 
 describe("E2E test for product", () => {
+
     beforeEach(async () => {
-        await sequelize.sync({force: true});
+        await setupDb();
     })
 
-    afterAll(async () => {
-        await sequelize.close();
+    afterEach(async () => {
+        await teardownDb();
     })
 
     it("should create a product", async () => {
@@ -22,12 +24,8 @@ describe("E2E test for product", () => {
 
         expect(response.status).toBe(201);
         expect(response.body.id).toBeDefined();
-        expect(response.body.name).toBe( "Product o1");
-
+        expect(response.body.name).toBe("Product o1");
         expect(response.body.purchasePrice).toBe(20.0);
         expect(response.body.stock).toBe(10.0);
-
     })
-
-
 });

@@ -13,6 +13,7 @@ const MockRepository = () => {
     return {
         findAll: jest.fn(),
         find: jest.fn().mockResolvedValue(product),
+        add: jest.fn()
     }
 }
 
