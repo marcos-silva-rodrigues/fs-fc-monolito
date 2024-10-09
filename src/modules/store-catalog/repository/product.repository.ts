@@ -29,13 +29,32 @@ export default class ProductRepository implements  ProductGateway {
     }
 
     async add(product: Product): Promise<Product> {
-        await ProductModel.create({
-            id: product.id.id,
-            name: product.name,
-            description: product.description,
-            salesPrice: product.salesPrice,
+        const productModel =  await ProductModel.findOne({
+            where: {
+                id: product.id.id,
+            }
         })
-        
+
+        if (!productModel) {
+            await ProductModel.create({
+                id: product.id.id,
+                name: product.name,
+                description: product.description,
+                salesPrice: product.salesPrice,
+                createdAt: product.createdAt,
+                updatedAt: product.updatedAt,
+            })
+
+            return product;
+        }
+
+        productModel.salesPrice = product.salesPrice;
+        productModel.name = product.name;
+        productModel.description = product.description;
+        productModel.updatedAt = product.updatedAt;
+
+        await productModel.save();
+
         return product;
     }
 

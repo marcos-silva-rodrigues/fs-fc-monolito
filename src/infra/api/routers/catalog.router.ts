@@ -12,7 +12,7 @@ router.post("/", async (req: Request, res: Response) => {
     const input: AddProductInputDto = {
         name: req.body.name,
         description: req.body.description,
-        salesPrice: req.body.purchasePrice,
+        salesPrice: req.body.salesPrice,
     }
 
     if (req.body.id) {
