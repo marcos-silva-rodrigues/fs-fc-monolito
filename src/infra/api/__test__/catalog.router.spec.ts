@@ -21,9 +21,6 @@ describe("E2E test for catalog", () => {
                 purchasePrice: 20.0,
                 stock: 10.0,
             });
-
-        console.log("product", responseProducts.body)
-
             
         expect(responseProducts.status).toBe(201);
     
