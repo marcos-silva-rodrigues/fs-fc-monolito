@@ -21,9 +21,9 @@ describe("E2E test for catalog", () => {
                 purchasePrice: 20.0,
                 stock: 10.0,
             });
-            
+
         expect(responseProducts.status).toBe(201);
-    
+
 
         const responseCatalog = await request(app)
             .post("/catalog")
@@ -34,7 +34,6 @@ describe("E2E test for catalog", () => {
                 salesPrice: 55.0,
             });
 
-            console.log("catalog", responseCatalog.body)
 
         expect(responseCatalog.status).toBe(201);
         expect(responseCatalog.body.id).toBe(responseProducts.body.id);
