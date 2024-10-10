@@ -26,6 +26,8 @@ export default class ClientRepository implements ClientGateway {
             where: { id }
         });
 
+        if (!client) return null;
+
         return new Client({
             id: new Id(client.id),
             name: client.name,

@@ -37,8 +37,6 @@ export class CheckoutRepository implements CheckoutGateway {
             include: [ClientModel, ProductOrderModel]
         })
 
-        console.log(model);
-
         if (!model) return null;
 
         const productsModel = await ProductModel.findAll({

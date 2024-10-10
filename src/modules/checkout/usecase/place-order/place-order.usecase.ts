@@ -46,6 +46,7 @@ export default class PlaceOrderUseCase {
             products
         });
 
+        console.log("PlaceOrderUseCase", order.total)
         const payment = await this.paymentFacade.process({
             orderId: order.id.id,
             amount: order.total

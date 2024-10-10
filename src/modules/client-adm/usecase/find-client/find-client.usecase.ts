@@ -10,6 +10,8 @@ export default class FindClientUseCase {
       
         const client = await this.repository.find(input.id);
 
+        if (!client) return null;
+        
         return {
             id: client.id.id,
             name: client.name,
