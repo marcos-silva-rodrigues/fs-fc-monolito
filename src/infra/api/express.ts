@@ -16,14 +16,16 @@ import AddressModel from "../../modules/invoice/repository/address.model";
 import InvoiceModel from "../../modules/invoice/repository/invoice.model";
 import { InvoiceItem } from "../../modules/invoice/domain/invoice-item";
 import InvoiceItemModel from "../../modules/invoice/repository/invoice-item.model";
+import { invoiceRouter } from "./routers/invoice.router";
 
 export const app: Express = express();
 app.use(express.json());
 
-app.use("/clients", clientRouter)
-app.use("/products", productRouter)
-app.use("/catalog", catalogRouter)
-app.use("/checkout", checkoutRouter)
+app.use("/clients", clientRouter);
+app.use("/products", productRouter);
+app.use("/catalog", catalogRouter);
+app.use("/checkout", checkoutRouter);
+app.use("/invoices", invoiceRouter);
 
 export let sequelize: Sequelize;
 export let migration: Umzug<any>;
